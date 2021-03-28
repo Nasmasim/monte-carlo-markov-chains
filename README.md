@@ -1,7 +1,7 @@
 # Monte-Carlo Markov Chains - Variational Inference
 
 ## Description
-This projects outlines how to perform probabilistic predictions in the case of a Logistic Regression and Gaussian Process Regression by using A Monte-Carlo Markov Chain method: Metropolis-Hastings and Black-Box Variational Inference.
+This projects outlines how to perform probabilistic predictions in the case of a Logistic Regression and Gaussian Process Regression by using a Monte-Carlo Markov Chain method (Metropolis-Hastings) and Black-Box Variational Inference.
 
 ## Requirements
 
@@ -15,7 +15,7 @@ pip install matplotlib scipy numpy keras tensorflow jax jaxlib
 1. Monte-Carlo Markov Chain 
   a. Logisitic Regression 
     * To estimate the predictive distribution, we use Monte-Carlo sampling. 
-    * To sample from the posterior distribution (closed-form) we use Metropolis Hastings 
+    * in [metropolis_hastings_logistic.py](https://github.com/Nasmasim/monte-carlo-markov-chains/blob/main/distribution_prediction/metropolis_hastings/metropolis_hastings_logistic.py) To sample from the posterior distribution (closed-form) we use Metropolis Hastings 
 
 ## Remarks
 
