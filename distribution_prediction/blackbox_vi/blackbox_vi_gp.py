@@ -118,6 +118,7 @@ def expected_log_marginal_likelihood(mu: np.ndarray,
     :return: The expected log-likelihood. That expectation is calculated according to the approximated posterior
     N(mu, Sigma) by using the samples in epsilon.
     """
+    
     mu = mu.reshape(-1, 1)
     y = y.reshape(-1, 1)
 
@@ -161,6 +162,7 @@ def kl_div(mu: np.ndarray,
     N(mean=0, variance=(sigma_prior**2) I)
     :return: the value of the KL divergence
     """
+    
     d = A_chol.shape[0]
     x = -2 * np.log(np.prod(np.diagonal(A_chol))) + 2 * np.log(sigma_prior) * d - d
 

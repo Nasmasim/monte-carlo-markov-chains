@@ -5,17 +5,17 @@ from matplotlib.transforms import Bbox
 from scipy.stats import multivariate_normal
 
 from gaussian_process import GaussianProcess
-from gaussian_linear_kernel import GaussianLinearKernel
+from kernels.gaussian_linear_kernel import GaussianLinearKernel
 
 
 def probability_class_1(x, theta):
-    from blackbox_vi_logistics import sigmoid
+    from distribution_prediction.blackbox_vi.blackbox_vi_logistics import sigmoid
 
     return sigmoid(x, theta)
 
 
 def plot_vi_logistics(number_points_per_class, interactive=False, interval_plot=1, number_iterations=1000):
-    from blackbox_vi_logistics import variational_inference_logistics
+    from distribution_prediction.blackbox_vi.blackbox_vi_logistics import variational_inference_logistics
 
     def _plot(fig, ax1, ax2, mean, sigma, array_samples_theta, interactive=False):
         colorbar = None

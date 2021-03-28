@@ -2,7 +2,7 @@ import jax.numpy as np
 import numpy as onp
 from jax import grad
 
-from utils_plots import plot_vi_logistics
+from distribution_prediction.blackbox_vi.utils_plots import plot_vi_logistics
 
 
 def sigmoid(X: np.ndarray,
@@ -45,8 +45,6 @@ def kl_div(mu: np.ndarray,
 
     return 0.5 * (x + y + z)
 
-
-
 def expected_log_likelihood(mu: np.ndarray,
                             A: np.ndarray,
                             epsilon: np.ndarray,
@@ -65,7 +63,6 @@ def expected_log_likelihood(mu: np.ndarray,
     :return: The expected log-likelihood. That expectation is calculated according to the approximated posterior
     N(mu, Sigma) by using the samples in epsilon.
     """
-
     mu = mu.reshape(-1, 1)
     theta = (mu + A @ epsilon.T).T
     
@@ -128,18 +125,13 @@ def variational_inference_logistics(X: np.ndarray,
     while counter < number_iterations:
         mu_old = mu
         A_old = A
-
         
-        epsilon = onp.random.multivariate_normal([0,0], np.identity(2), num_samples_per_turn)
-        
+        epsilon = onp.random.multivariate_normal([0,0], np.identity(2), num_samples_per_turn) 
         mu_grad_ell, A_grad_ell = grad(expected_log_likelihood, argnums = (0, 1))(mu, A, epsilon, X, y)
-        
         mu_grad_kld, A_grad_kld = grad(kl_div, argnums = (0, 1))(mu, A, sigma_prior)
-        
         mu_grad = mu_grad_ell - mu_grad_kld
         A_grad = A_grad_ell - A_grad_kld
-        
-    
+
 
         # Performing a gradient descent step on A and mu
         # (we make sure that the elements on the diagonal of A remain superior to 1e-5)
@@ -150,8 +142,7 @@ def variational_inference_logistics(X: np.ndarray,
         if counter % 100 == 0:
             # Printing the highest change in parameters at that iteration
             print(f"counter: {counter} - {onp.max((onp.linalg.norm(mu_old - mu), onp.linalg.norm(A_old - A)))}\r")
-            print(mu.shape, A.dot(A.T).shape, A.shape, mu_grad.shape, A_grad.shape, epsilon.shape, X.shape, y.shape)
-            
+
         yield mu, A.dot(A.T), A, mu_grad, A_grad, epsilon
 
 

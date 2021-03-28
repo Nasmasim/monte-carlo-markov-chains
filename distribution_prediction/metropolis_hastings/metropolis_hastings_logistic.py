@@ -1,22 +1,10 @@
 import numpy as np
 
 
-#from distribution_prediction.utils import sigmoid
+from distribution_prediction.metropolis_hastings.utils_plots import plot_metropolis_hastings_logistics
 from scipy.stats import bernoulli
 from scipy.stats import multivariate_normal
-
-
-
-from utils_plots import plot_metropolis_hastings_logistics
-
-
-def sigmoid(X, theta):
-    """
-    :param X: matrix of shape N * P containing a data point per row
-    :param theta: matrix of parameters: shape: 1 * P or M * P
-    :return: (matrix of size N * 1 or N * M) : the sigmoid function applied to every element of the matrix X.dot(theta.T)
-    """
-    return np.clip(1 / (1 + np.exp(- X.dot(theta.T))), 1e-5, 1 - 1e-5)
+from distribution_prediction.utils import sigmoid
 
 
 def get_log_upper_proba_distribution(X: np.ndarray,
@@ -41,26 +29,6 @@ def get_log_upper_proba_distribution(X: np.ndarray,
     :param sigma_prior: standard deviation of the prior on the parameters
     :return: log( p_1(theta | X, y) )
     """
-    # TODO
-    #bernoulli_likelihood = (sigmoid(theta.T @ X ) ** y ) * (1 - sigmoid(theta.T @ X )) ** (1-y)
-    
-    # inv_logit = np.exp ( X @ theta.reshape((-1,1))) / ( 1+ np.exp( X @ theta.reshape((-1,1))))
-    
-    # normal_log_prior = np.sum(norm.logpdf(theta, loc = 0, scale = sigma_prior.reshape((-1,1))))
-    
-    # log_likelihood = np.sum( y * np.log (inv_logit) + (1-y) * np.log (1-inv_logit)) 
-    
-    # log_posterior = normal_log_prior + log_likelihood
-    
-    # return log_posterior 
-    
-    # log_prior = multivariate_normal.logpdf(theta, cov= sigma_prior **2 * np.identity(2))
-    
-    # log_likelihood = bernoulli.logpmf( k=y, p= sigmoid(X, theta.reshape(1,-1)))
-    
-    # log_posterior = np.sum(log_likelihood) + log_prior
-    
-    # return log_posterior
     theta = theta.reshape(-1, theta.shape[0])
     p_c1x = sigmoid(X, theta) 
     p_y_given_theta_x = np.power(p_c1x, y)*np.power(1-p_c1x, 1-y) #shape(N, 1)
@@ -70,9 +38,7 @@ def get_log_upper_proba_distribution(X: np.ndarray,
     log_posterior = np.sum(np.log(p_y_given_theta_x)) + np.log(p_theta) 
     return log_posterior
 
-    
 
-   
 
 def metropolis_hastings(X: np.ndarray,
                         y: np.ndarray,
@@ -93,18 +59,14 @@ def metropolis_hastings(X: np.ndarray,
     :param X: data points of shape (N, 2) where N is the number of data points. There is one data point per row
     :param y: column vector of shape (N, 1) indicating the class of p. for each point, y_i = 0 or 1.
     In addition, y_i = 1 is equivalent to "x_i is in C_1"
-    
     :param number_expected_samples: Number of samples expected from the Metropolis Hastings procedure
     :param sigma_exploration_mh: Standard deviation of the proposal density.
-    
     We consider that the proposal density corresponds to a multivariate normal distribution, with:
     - mean = null vector
     - covariance matrix = (sigma_proposal_density ** 2) identity matrix
     :param sigma_prior: standard deviation of the prior on the parameters
-    
     """
 
-    # ----- These are some the variables you should manipulate in the main loop of that function ----------
     list_samples = []  # Every newly_sampled_theta  which is accepted should be added to the list of samples
 
     newly_sampled_theta = None  # Last sampled parameters (from the proposal density q)
@@ -114,17 +76,12 @@ def metropolis_hastings(X: np.ndarray,
     u = np.random.rand()  # Random number used for deciding if newly_sampled_theta should be accepted or not
 
     first_theta = np.zeros(X.shape[1])
-    
-    
 
-    # -------------------------------------------------------------------------------------------------
-    # task 2
+
     last_theta = first_theta
 
     while len(list_samples) < number_expected_samples:
-        #########################
-        # TODO : Complete Here
-        #########################
+
         u = np.random.rand()
 
         newly_sampled_theta = np.random.multivariate_normal(mean=last_theta, cov=(sigma_exploration_mh ** 2) * np.identity(2) )
@@ -134,7 +91,7 @@ def metropolis_hastings(X: np.ndarray,
 
         accepted = np.min((1.0, np.exp( lp_t_tau_one - lp_t_tau)))
 
-        is_sample_accepted = accepted > u # or larger bigger
+        is_sample_accepted = accepted > u
 
         if is_sample_accepted:
             list_samples.append(newly_sampled_theta)
@@ -160,13 +117,9 @@ def get_predictions(X_star: np.ndarray,
     row should be equal to the prediction p(C_1|X,y,x_star_i) where x_star_i corresponds to the i'th row in X_star
     """
     # TODO
-    # return np.sum( bernoulli.pmf( k=np.ones((X_star.shape[0], 1)),
-    #                              p=sigmoid(X_star, array_samples_theta ) ),
-    #               axis=1 ).reshape(X_star.shape[0], 1) / array_samples_theta.shape[0]
     p_y_star_array = sigmoid(X_star, array_samples_theta)
     p_y_star = p_y_star_array.mean(axis=1)
-    return p_y_star #ensure shape
-
+    return p_y_star 
 
 
 if __name__ == '__main__':

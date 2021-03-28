@@ -1,6 +1,7 @@
 from typing import Union, Tuple
 
 import numpy as np
+
 from matplotlib import pyplot as plt
 
 from objective_functions.abstract_objective_function import ObjectiveFunction

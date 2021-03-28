@@ -55,8 +55,8 @@ class GaussianLinearKernel(Kernel):
                        log_length_scale: float,
                        log_noise_scale: float,
                        log_amplitude_linear=0,
-                       log_offset=0,
                        c=0,
+                       log_offset=0,
                        ) -> None:
         self.log_amplitude_linear = log_amplitude_linear
         self.c = c

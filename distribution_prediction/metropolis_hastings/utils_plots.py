@@ -7,7 +7,7 @@ from scipy.stats import multivariate_normal
 
 
 def plot_metropolis_hastings_logistics(num_samples, interactive=False, sigma_exploration_mh=1, sigma_prior=1, number_points_per_class=5):
-    from metropolis_hastings_logistic import get_predictions, \
+    from distribution_prediction.metropolis_hastings.metropolis_hastings_logistic import get_predictions, \
         metropolis_hastings
     def _plot(array_samples_data, fig, ax1, ax2, interactive=False):
         colorbar = None

@@ -2,12 +2,10 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 from gaussian_process import GaussianProcess
-from gaussian_linear_kernel import GaussianLinearKernel
-from abstract_objective_function import ObjectiveFunction
-from sin import LinearSin
-
+from kernels.gaussian_linear_kernel import GaussianLinearKernel
+from objective_functions.abstract_objective_function import ObjectiveFunction
+from objective_functions.sin import LinearSin
 from scipy.stats import multivariate_normal
-
 
 
 def get_log_upper_proba_distribution_gp(gaussian_process: GaussianProcess,
@@ -27,7 +25,6 @@ def get_log_upper_proba_distribution_gp(gaussian_process: GaussianProcess,
     of shape (6,). As our linear + gaussian kernel depends on 6 real numbers.
     :return: log( p_1(theta | X, y) )
     """
-    # TODO
     log_likelihood = gaussian_process.get_log_marginal_likelihood(theta[0], theta[1], theta[2], theta[3], theta[4], theta[5])
 
     log_prior = gaussian_process.get_log_prior_at(theta[0], theta[1], theta[2], theta[3], theta[4], theta[5])
@@ -35,6 +32,7 @@ def get_log_upper_proba_distribution_gp(gaussian_process: GaussianProcess,
     log_posterior = np.sum( log_likelihood ) + log_prior
     
     return log_posterior 
+
 
 def metropolis_hastings_gaussian_process(gp: GaussianProcess,
                                          number_expected_samples: int,
@@ -60,7 +58,6 @@ def metropolis_hastings_gaussian_process(gp: GaussianProcess,
    :param number_hyperparameters_gaussian_process: Number of hyperparameters for the kernel of the gp.
    """
 
-    # ----- These are some the variables you should manipulate in the main loop of that function ----------
     list_samples = []  # Every newly_sampled_theta  which is accepted should be added to the list of samples
 
     newly_sampled_theta = None  # Last sampled parameters (from the proposal density q)
@@ -71,13 +68,10 @@ def metropolis_hastings_gaussian_process(gp: GaussianProcess,
 
     first_theta = np.zeros(number_hyperparameters_gaussian_process)
 
-    # -------------------------------------------------------------------------------------------------
     last_theta = first_theta
     
     while len(list_samples) < number_expected_samples:
-        #########################
-        # TODO : Complete Here
-        #########################
+
         u = np.random.rand()
 
         newly_sampled_theta = np.random.multivariate_normal(mean=last_theta, cov=(sigma_exploration_mh ** 2) * np.identity(number_hyperparameters_gaussian_process) )
@@ -94,7 +88,6 @@ def metropolis_hastings_gaussian_process(gp: GaussianProcess,
             last_theta = newly_sampled_theta      
 
         yield is_sample_accepted, np.array(list_samples), newly_sampled_theta, u
-
 
 
 def calculate_variance_even_mixture_gaussians(list_means, list_variances):
