@@ -2,7 +2,7 @@ import jax.numpy as np
 import numpy as onp
 from jax import grad
 
-from distribution_prediction.blackbox_vi.utils_plots import plot_vi_logistics
+from utils_plots import plot_vi_logistics
 
 
 def sigmoid(X: np.ndarray,
