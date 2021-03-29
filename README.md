@@ -28,7 +28,7 @@ pip install matplotlib scipy numpy keras tensorflow jax jaxlib
 
 ### B. Bayesian Optimisation
 
-[expected_improvement.py](https://github.com/Nasmasim/monte-carlo-markov-chains/blob/main/acquisition_functions/expected_improvement.py) implementation of expected improvement acquisition function used in [bayesian_optimisation.py](https://github.com/Nasmasim/monte-carlo-markov-chains/blob/main/bayesian_optimisation.py) to perform Bayesian Optimisation for an arbitrary objective function. 
+[expected_improvement.py](https://github.com/Nasmasim/monte-carlo-markov-chains/blob/main/acquisition_functions/expected_improvement.py) implements the expected improvement acquisition function used in [bayesian_optimisation.py](https://github.com/Nasmasim/monte-carlo-markov-chains/blob/main/bayesian_optimisation.py) to perform Bayesian Optimisation for an arbitrary objective function. Other acquisition functions can be found in [acquisition_function](https://github.com/Nasmasim/monte-carlo-markov-chains/tree/main/acquisition_functions).
 
 ### C. Monte-Carlo Markov Chain 
 #### C1. Logisitic Regression 
