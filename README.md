@@ -30,8 +30,22 @@ pip install matplotlib scipy numpy keras tensorflow jax jaxlib
 [metropolis_hastings_gp.py](https://github.com/Nasmasim/monte-carlo-markov-chains/blob/main/distribution_prediction/metropolis_hastings/metropolis_hastings_gp.py) we perform several steps of the Metropolis-Hastings algorithm for the GP Regression
 
 <p align="center">
-<img src="https://github.com/Nasmasim/monte-carlo-markov-chains/blob/main/plots/gaussian_process_regression.png" width="50%">
+<img src="https://github.com/Nasmasim/monte-carlo-markov-chains/blob/main/plots/gaussian_process_regression.png" width="40%">
 </p>
+
+2. Black Box Variational Inference
+* Logistic Regression
+   * Assuming the parameters are sampled from a normal distribution, we maximise the Evidence Lower Bound (ELBO) and perform variational inference in [blackbox_vi_logistics.py](https://github.com/Nasmasim/monte-carlo-markov-chains/blob/main/distribution_prediction/blackbox_vi/blackbox_vi_logistics.py)
+<p align="center">
+<img src="https://github.com/Nasmasim/monte-carlo-markov-chains/blob/main/plots/Screenshot%202021-03-29%20at%2011.47.03.png" width="50%">
+</p>
+
+* Gaussian Process Regression
+   * Using the reparametrisation trick, we compute an approximation of the expected lof marginal likelihood: 
+<p align="center">
+<img src="https://github.com/Nasmasim/monte-carlo-markov-chains/blob/main/plots/Screenshot%202021-03-29%20at%2011.54.01.png" width="50%">
+</p>
+
 
 ## Remarks
 
