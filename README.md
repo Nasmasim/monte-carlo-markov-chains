@@ -45,6 +45,21 @@ pip install matplotlib scipy numpy keras tensorflow jax jaxlib
 <p align="center">
 <img src="https://github.com/Nasmasim/monte-carlo-markov-chains/blob/main/plots/Screenshot%202021-03-29%20at%2011.54.01.png" width="50%">
 </p>
+<p align="center">
+<img src="https://github.com/Nasmasim/monte-carlo-markov-chains/blob/main/plots/black_box_VI.png" width="50%">
+</p>
+
+## Launching a visualisation
+
+You can visualise the results produced by your implementation 
+by launching the python script contained in the corresponding file.
+
+For example, if you want to visualise your predictions based on the Metropolis-Hastings samples,
+in the Logistic Regression, you can execute the following command
+
+```bash
+python -m distribution_prediction.metropolis_hastings.metropolis_hastings_logistic
+```
 
 
 ## Remarks
