@@ -16,7 +16,7 @@ pip install matplotlib scipy numpy keras tensorflow jax jaxlib
   a. Logisitic Regression 
     * To estimate the predictive distribution, we use Monte-Carlo sampling. 
     * in [metropolis_hastings_logistic.py](https://github.com/Nasmasim/monte-carlo-markov-chains/blob/main/distribution_prediction/metropolis_hastings/metropolis_hastings_logistic.py) To sample from the posterior distribution (closed-form) we use Metropolis Hastings 
-![alt text](https://github.com/Nasmasim/monte-carlo-markov-chains/blob/main/plots/metropolis_hastings.png)
+![alt text](https://github.com/Nasmasim/monte-carlo-markov-chains/blob/main/plots/metropolis_hastings.png =250x250)
 
 ## Remarks
 
