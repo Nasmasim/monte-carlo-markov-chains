@@ -1,7 +1,7 @@
 # Monte-Carlo Markov Chains - Variational Inference
 
 ## Description
-This projects outlines how to perform probabilistic predictions in the case of a Logistic Regression and Gaussian Process Regression by using a Monte-Carlo Markov Chain method (Metropolis-Hastings) and Black-Box Variational Inference.
+This projects outlines how to perform probabilistic predictions in the case of a Logistic Regression and Gaussian Process Regression by using a Monte-Carlo Markov Chain method (Metropolis-Hastings) and Black-Box Variational Inference. Included are also different Kernel implementations as well as Acquisition Function for performing Bayesian Optimisation. 
 
 ## Requirements
 
