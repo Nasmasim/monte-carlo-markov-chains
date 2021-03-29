@@ -18,6 +18,7 @@ pip install matplotlib scipy numpy keras tensorflow jax jaxlib
 <p align="center">
 <img src="https://github.com/Nasmasim/monte-carlo-markov-chains/blob/main/plots/Screenshot%202021-03-29%20at%2012.05.53.png" width="50%">
 </p>
+
 2. [matern_kernel.py](https://github.com/Nasmasim/monte-carlo-markov-chains/blob/main/kernels/matern_kernel.py) to use a 1-time differentiable Gaussian Process with 3/2 Matern Kernel: 
 <p align="center">
 <img src="https://github.com/Nasmasim/monte-carlo-markov-chains/blob/main/plots/Screenshot%202021-03-29%20at%2012.08.49.png" width="50%">
