@@ -26,19 +26,24 @@ pip install matplotlib scipy numpy keras tensorflow jax jaxlib
 " width="50%">
 </p>
 
-### 
+#### Sampling 
+[gaussian_process.py](https://github.com/Nasmasim/monte-carlo-markov-chains/blob/main/gaussian_process.py) implements gaussian process specific functions. By minimising the negative log marginal likelihood and measuring log predictive density (LPD), we can also measure the performance of an optimised GP on a test set. 
+
+### Bayesian Optimisation
+
+[expected_improvement.py](https://github.com/Nasmasim/monte-carlo-markov-chains/blob/main/acquisition_functions/expected_improvement.py) implementation of expected improvement acquisition function
+
+[bayesian_optimisation.py](https://github.com/Nasmasim/monte-carlo-markov-chains/blob/main/bayesian_optimisation.py) performs Bayesian Optimisation for an arbitrary objective function. 
 
 ### Monte-Carlo Markov Chain 
-* Logisitic Regression 
-    * To estimate the predictive distribution, we use Monte-Carlo sampling. 
-    * in [metropolis_hastings_logistic.py](https://github.com/Nasmasim/monte-carlo-markov-chains/blob/main/distribution_prediction/metropolis_hastings/metropolis_hastings_logistic.py) to sample from the posterior distribution (closed-form) we use Metropolis Hastings 
+### Logisitic Regression 
+[metropolis_hastings_logistic.py](https://github.com/Nasmasim/monte-carlo-markov-chains/blob/main/distribution_prediction/metropolis_hastings/metropolis_hastings_logistic.py) to sample from the posterior distribution (closed-form) we use Metropolis Hastings (Monte Carlo Sampling method)
 <p align="center">
 <img src="https://github.com/Nasmasim/monte-carlo-markov-chains/blob/main/plots/metropolis_hastings.png" width="50%">
 </p>
 
-* Gaussian Process Regression
-  * We use the sum of two kernels as an example: a gaussian kernel and a linear kernel. 
-
+### Gaussian Process Regression
+Use the sum of two kernels as an example: a gaussian kernel and a linear kernel. 
 <p align="center">
 <img src="https://github.com/Nasmasim/monte-carlo-markov-chains/blob/main/plots/Screenshot%202021-03-29%20at%2010.31.16.png" width="50%">
 </p>
@@ -49,15 +54,15 @@ pip install matplotlib scipy numpy keras tensorflow jax jaxlib
 <img src="https://github.com/Nasmasim/monte-carlo-markov-chains/blob/main/plots/gaussian_process_regression.png" width="40%">
 </p>
 
-2. Black Box Variational Inference
-* Logistic Regression
-   * Assuming the parameters are sampled from a normal distribution, we maximise the Evidence Lower Bound (ELBO) and perform variational inference in [blackbox_vi_logistics.py](https://github.com/Nasmasim/monte-carlo-markov-chains/blob/main/distribution_prediction/blackbox_vi/blackbox_vi_logistics.py)
+### Black Box Variational Inference
+#### Logistic Regression
+Assuming the parameters are sampled from a normal distribution, we maximise the Evidence Lower Bound (ELBO) and perform variational inference in [blackbox_vi_logistics.py](https://github.com/Nasmasim/monte-carlo-markov-chains/blob/main/distribution_prediction/blackbox_vi/blackbox_vi_logistics.py)
 <p align="center">
 <img src="https://github.com/Nasmasim/monte-carlo-markov-chains/blob/main/plots/Screenshot%202021-03-29%20at%2011.47.03.png" width="50%">
 </p>
 
-* Gaussian Process Regression
-   * Using the reparametrisation trick, we compute an approximation of the expected lof marginal likelihood: 
+#### Gaussian Process Regression
+Using the reparametrisation trick, we compute an approximation of the expected lof marginal likelihood: 
 <p align="center">
 <img src="https://github.com/Nasmasim/monte-carlo-markov-chains/blob/main/plots/Screenshot%202021-03-29%20at%2011.54.01.png" width="50%">
 </p>
@@ -67,8 +72,7 @@ pip install matplotlib scipy numpy keras tensorflow jax jaxlib
 
 ## Launching a visualisation
 
-You can visualise the results produced by your implementation 
-by launching the python script contained in the corresponding file.
+You can visualise the results produced by your implementation by launching the python script contained in the corresponding file.
 
 For example, if you want to visualise your predictions based on the Metropolis-Hastings samples,
 in the Logistic Regression, you can execute the following command
@@ -76,7 +80,6 @@ in the Logistic Regression, you can execute the following command
 ```bash
 python -m distribution_prediction.metropolis_hastings.metropolis_hastings_logistic
 ```
-
 
 ## Remarks
 
