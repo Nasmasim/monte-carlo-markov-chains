@@ -12,56 +12,47 @@ pip install matplotlib scipy numpy keras tensorflow jax jaxlib
 
 ## Project Structure
 
-### Gaussian Process
+### A. Gaussian Process
 #### Kernels 
 1. [gaussian_kernel.py](https://github.com/Nasmasim/monte-carlo-markov-chains/blob/main/kernels/gaussian_kernel.py) for the squared exponential (Gaussian/ radial-basis-function) kernel: 
-
 <p align="center">
 <img src="https://github.com/Nasmasim/monte-carlo-markov-chains/blob/main/plots/Screenshot%202021-03-29%20at%2012.05.53.png" width="50%">
 </p>
-
 2. [matern_kernel.py](https://github.com/Nasmasim/monte-carlo-markov-chains/blob/main/kernels/matern_kernel.py) to use a 1-time differentiable Gaussian Process with 3/2 Matern Kernel: 
 <p align="center">
 <img src="https://github.com/Nasmasim/monte-carlo-markov-chains/blob/main/plots/Screenshot%202021-03-29%20at%2012.08.49.png
 " width="50%">
 </p>
-
-#### Sampling 
 [gaussian_process.py](https://github.com/Nasmasim/monte-carlo-markov-chains/blob/main/gaussian_process.py) implements gaussian process specific functions. By minimising the negative log marginal likelihood and measuring log predictive density (LPD), we can also measure the performance of an optimised GP on a test set. 
 
-### Bayesian Optimisation
+### B. Bayesian Optimisation
 
-[expected_improvement.py](https://github.com/Nasmasim/monte-carlo-markov-chains/blob/main/acquisition_functions/expected_improvement.py) implementation of expected improvement acquisition function
+[expected_improvement.py](https://github.com/Nasmasim/monte-carlo-markov-chains/blob/main/acquisition_functions/expected_improvement.py) implementation of expected improvement acquisition function used in [bayesian_optimisation.py](https://github.com/Nasmasim/monte-carlo-markov-chains/blob/main/bayesian_optimisation.py) to perform Bayesian Optimisation for an arbitrary objective function. 
 
-[bayesian_optimisation.py](https://github.com/Nasmasim/monte-carlo-markov-chains/blob/main/bayesian_optimisation.py) performs Bayesian Optimisation for an arbitrary objective function. 
-
-### Monte-Carlo Markov Chain 
-### Logisitic Regression 
-[metropolis_hastings_logistic.py](https://github.com/Nasmasim/monte-carlo-markov-chains/blob/main/distribution_prediction/metropolis_hastings/metropolis_hastings_logistic.py) to sample from the posterior distribution (closed-form) we use Metropolis Hastings (Monte Carlo Sampling method)
+### C. Monte-Carlo Markov Chain 
+#### C1. Logisitic Regression 
+[metropolis_hastings_logistic.py](https://github.com/Nasmasim/monte-carlo-markov-chains/blob/main/distribution_prediction/metropolis_hastings/metropolis_hastings_logistic.py) to sample from the posterior distribution (closed-form) we use Metropolis Hastings (Monte Carlo Sampling method). 
 <p align="center">
 <img src="https://github.com/Nasmasim/monte-carlo-markov-chains/blob/main/plots/metropolis_hastings.png" width="50%">
 </p>
 
-### Gaussian Process Regression
-Use the sum of two kernels as an example: a gaussian kernel and a linear kernel. 
+#### C2. Gaussian Process Regression
+[metropolis_hastings_gp.py](https://github.com/Nasmasim/monte-carlo-markov-chains/blob/main/distribution_prediction/metropolis_hastings/metropolis_hastings_gp.py) to perform several steps of the Metropolis-Hastings algorithm for the GP Regression using the sum of two kernels as an example: 
 <p align="center">
 <img src="https://github.com/Nasmasim/monte-carlo-markov-chains/blob/main/plots/Screenshot%202021-03-29%20at%2010.31.16.png" width="50%">
 </p>
-
-[metropolis_hastings_gp.py](https://github.com/Nasmasim/monte-carlo-markov-chains/blob/main/distribution_prediction/metropolis_hastings/metropolis_hastings_gp.py) we perform several steps of the Metropolis-Hastings algorithm for the GP Regression
-
 <p align="center">
 <img src="https://github.com/Nasmasim/monte-carlo-markov-chains/blob/main/plots/gaussian_process_regression.png" width="40%">
 </p>
 
-### Black Box Variational Inference
-#### Logistic Regression
+### D. Black Box Variational Inference
+#### D1. Logistic Regression
 Assuming the parameters are sampled from a normal distribution, we maximise the Evidence Lower Bound (ELBO) and perform variational inference in [blackbox_vi_logistics.py](https://github.com/Nasmasim/monte-carlo-markov-chains/blob/main/distribution_prediction/blackbox_vi/blackbox_vi_logistics.py)
 <p align="center">
 <img src="https://github.com/Nasmasim/monte-carlo-markov-chains/blob/main/plots/Screenshot%202021-03-29%20at%2011.47.03.png" width="50%">
 </p>
 
-#### Gaussian Process Regression
+#### D2. Gaussian Process Regression
 Using the reparametrisation trick, we compute an approximation of the expected lof marginal likelihood: 
 <p align="center">
 <img src="https://github.com/Nasmasim/monte-carlo-markov-chains/blob/main/plots/Screenshot%202021-03-29%20at%2011.54.01.png" width="50%">
