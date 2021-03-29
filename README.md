@@ -12,6 +12,22 @@ pip install matplotlib scipy numpy keras tensorflow jax jaxlib
 
 ## Project Structure
 
+### Gaussian Process
+#### Kernels 
+1. [gaussian_kernel.py](https://github.com/Nasmasim/monte-carlo-markov-chains/blob/main/kernels/gaussian_kernel.py) for the squared exponential (Gaussian/ radial-basis-function) kernel: 
+
+<p align="center">
+<img src="https://github.com/Nasmasim/monte-carlo-markov-chains/blob/main/plots/Screenshot%202021-03-29%20at%2012.05.53.png" width="50%">
+</p>
+
+2. [matern_kernel.py](https://github.com/Nasmasim/monte-carlo-markov-chains/blob/main/kernels/matern_kernel.py) to use a 1-time differentiable Gaussian Process with 3/2 Matern Kernel: 
+<p align="center">
+<img src="https://github.com/Nasmasim/monte-carlo-markov-chains/blob/main/plots/Screenshot%202021-03-29%20at%2012.08.49.png
+" width="50%">
+</p>
+
+### 
+
 ### Monte-Carlo Markov Chain 
 * Logisitic Regression 
     * To estimate the predictive distribution, we use Monte-Carlo sampling. 
